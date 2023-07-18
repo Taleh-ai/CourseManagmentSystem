@@ -1,2 +1,4 @@
-package com.example.ingresspaymentproject.service;public class CoursesService {
+package com.example.ingresspaymentproject.service;
+
+public class CoursesService {
 }

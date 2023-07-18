@@ -1,2 +1,4 @@
-package com.example.ingresspaymentproject.entity;public class CoursesEntity {
+package com.example.ingresspaymentproject.entity;
+
+public class CoursesEntity {
 }

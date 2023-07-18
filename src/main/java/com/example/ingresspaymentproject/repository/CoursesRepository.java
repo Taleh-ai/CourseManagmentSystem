@@ -1,2 +1,4 @@
-package com.example.ingresspaymentproject.repository;public class CoursesRepository {
+package com.example.ingresspaymentproject.repository;
+
+public class CoursesRepository {
 }

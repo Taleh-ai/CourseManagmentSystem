@@ -1,4 +1,4 @@
-package com.example.property.handler;
+package com.example.ingresspaymentproject.handler;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

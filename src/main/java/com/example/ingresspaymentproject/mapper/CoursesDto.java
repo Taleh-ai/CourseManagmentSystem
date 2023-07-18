@@ -1,2 +1,4 @@
-package com.example.ingresspaymentproject.mapper;public class CoursesDto {
+package com.example.ingresspaymentproject.mapper;
+
+public class CoursesDto {
 }

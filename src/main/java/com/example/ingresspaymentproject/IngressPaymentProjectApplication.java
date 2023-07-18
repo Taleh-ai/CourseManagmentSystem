@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class IngressPaymentProjectApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(IngressPaymentProjectApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(IngressPaymentProjectApplication.class, args);
+    }
 
 }

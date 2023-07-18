@@ -1,2 +1,4 @@
-package com.example.ingresspaymentproject.dto;public class Courses {
+package com.example.ingresspaymentproject.dto;
+
+public class CoursesDto {
 }
