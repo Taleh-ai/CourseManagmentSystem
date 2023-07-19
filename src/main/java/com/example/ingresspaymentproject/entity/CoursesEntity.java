@@ -1,6 +1,10 @@
 package com.example.ingresspaymentproject.entity;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Data
 @Table(name = "courses")
 public class CoursesEntity {
   @Id
