@@ -16,8 +16,8 @@ import java.util.List;
 public class PaymentController {
 
 private final PaymentServiceImpl paymentService;
-    @PostMapping("payment")
-    public void addPayment(@RequestBody PaymentDto paymentDto) throws IOException {
+    @PostMapping(value = "payment",consumes = {"multipart/form-data"},produces = "application/json")
+    public void addPayment(@ModelAttribute PaymentDto paymentDto) throws IOException {
         paymentService.savePayment(paymentDto);
     }
 
