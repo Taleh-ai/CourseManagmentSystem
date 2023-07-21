@@ -32,5 +32,6 @@ public class ExpensesEntity {
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   @Column(name = "expenses_date")
   private LocalDate expensesDate;
-
+  @Lob
+  private byte[] reciepImage;
 }

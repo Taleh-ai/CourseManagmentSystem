@@ -1,37 +1,35 @@
 package com.example.ingresspaymentproject.controller;
 
-import com.example.ingresspaymentproject.dto.ExpensesDto;
-import com.example.ingresspaymentproject.dto.PaymentDto;
+import com.example.ingresspaymentproject.dto.PaymentRequestDto;
+import com.example.ingresspaymentproject.dto.PaymentResponseDto;
 import com.example.ingresspaymentproject.service.impl.PaymentServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
 public class PaymentController {
 
-private final PaymentServiceImpl paymentService;
+    private final PaymentServiceImpl paymentService;
     @PostMapping(value = "payment",consumes = {"multipart/form-data"},produces = "application/json")
-    public void addPayment(@ModelAttribute PaymentDto paymentDto) throws IOException {
-        paymentService.savePayment(paymentDto);
+    public void addPayment(@ModelAttribute PaymentRequestDto paymentRequestDto) throws IOException {
+        paymentService.savePayment(paymentRequestDto);
     }
 
-    @PutMapping("payment/{id}")
-    public void updatePayment(@PathVariable Long id, @RequestBody  PaymentDto paymentDto){
-        paymentService.updatePayment(id,paymentDto);
+    @PutMapping(value = "payment/{id}",consumes = {"multipart/form-data"},produces = "application/json")
+    public void updatePayment(@PathVariable Long id, @ModelAttribute PaymentRequestDto paymentRequestDto) throws IOException {
+        paymentService.updatePayment(id, paymentRequestDto);
     }
     @GetMapping("payment")
-    public List<PaymentDto> getAllExpenses(){
+    public List<PaymentResponseDto> getAllExpenses(){
         return paymentService.getAllPayments();
     }
 
     @GetMapping("payment/{number}")
-    public List<PaymentDto> getExpenses(@PathVariable String number){
+    public List<PaymentResponseDto> getExpenses(@PathVariable String number){
         return paymentService.getPayment(number);
     }
 }

@@ -1,17 +1,18 @@
 package com.example.ingresspaymentproject.service.impl;
 
-import com.example.ingresspaymentproject.dto.PaymentDto;
+import com.example.ingresspaymentproject.dto.PaymentRequestDto;
+import com.example.ingresspaymentproject.dto.PaymentResponseDto;
 import com.example.ingresspaymentproject.entity.PaymentEntity;
+import com.example.ingresspaymentproject.entity.StudentEntity;
 import com.example.ingresspaymentproject.mapper.PaymentMapper;
 import com.example.ingresspaymentproject.repository.PaymentRepository;
+import com.example.ingresspaymentproject.repository.StudentRepository;
 import com.example.ingresspaymentproject.service.PaymentService;
+import com.example.ingresspaymentproject.util.ImageUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.sql.Blob;
-import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -20,32 +21,34 @@ public class PaymentServiceImpl implements PaymentService {
 
     private final PaymentRepository repository;
     private final PaymentMapper mapper;
+    private final StudentRepository studentRepository;
     @Override
-    public void savePayment(PaymentDto paymentDto) throws IOException {
-        PaymentEntity paymentEntity  = mapper.fromDto(paymentDto);
-        paymentEntity.setReciepImage(paymentDto.getReciepImage().getBytes());
+    public void savePayment(PaymentRequestDto paymentRequestDto) throws IOException {
+        PaymentEntity paymentEntity  = mapper.fromDto(paymentRequestDto);
+        paymentEntity.setReciepImage(ImageUtil.compressImage(paymentRequestDto.getReciepImage().getBytes()));
         repository.save(paymentEntity);
     }
 
     @Override
-    public void updatePayment(Long id, PaymentDto paymentDto) {
+    public void updatePayment(Long id, PaymentRequestDto paymentRequestDto) throws IOException {
         PaymentEntity paymentEntity = repository.getById(id);
-        paymentEntity.setStudent(paymentDto.getStudent());
-        paymentEntity.setCourseName(paymentDto.getCourseName());
-        paymentEntity.setAmount(paymentDto.getAmount());
-        paymentEntity.setCourseMonth(paymentDto.getCourseMonth());
-        paymentEntity.setReceiptDate(paymentDto.getReceiptDate());
+        paymentEntity.setStudent(paymentRequestDto.getStudent());
+        paymentEntity.setCourseName(paymentRequestDto.getCourseName());
+        paymentEntity.setAmount(paymentRequestDto.getAmount());
+        paymentEntity.setCourseMonth(paymentRequestDto.getCourseMonth());
+        paymentEntity.setReceiptDate(paymentRequestDto.getReceiptDate());
         repository.save(paymentEntity);
     }
 
     @Override
-    public List<PaymentDto> getAllPayments() {
+    public List<PaymentResponseDto> getAllPayments() {
         return mapper.toDtoList(repository.findAll()) ;
     }
 
     @Override
-    public List<PaymentDto> getPayment(String number) {
-     return mapper.toDtoList(repository.findAllByStudent(number));
+    public List<PaymentResponseDto> getPayment(String number) {
+        StudentEntity entity = studentRepository.findByPhone(number);
+        return mapper.toDtoList(repository.findAllByStudent(entity.getFirstName()+" "+entity.getLastName()));
     }
 
 

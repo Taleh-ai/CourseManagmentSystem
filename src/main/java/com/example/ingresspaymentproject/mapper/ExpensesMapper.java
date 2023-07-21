@@ -1,6 +1,7 @@
 package com.example.ingresspaymentproject.mapper;
 
-import com.example.ingresspaymentproject.dto.ExpensesDto;
+import com.example.ingresspaymentproject.dto.ExpensesRequestDto;
+import com.example.ingresspaymentproject.dto.ExpensesResponseDto;
 import com.example.ingresspaymentproject.entity.ExpensesEntity;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
@@ -11,33 +12,34 @@ import java.util.stream.Collectors;
 @Mapper
 @Component
 public class ExpensesMapper {
-    public ExpensesEntity fromDto(ExpensesDto expensesDto){
+    public ExpensesEntity fromDto(ExpensesRequestDto expensesRequestDto){
         ExpensesEntity entity = ExpensesEntity.builder()
-                .amount(expensesDto.getAmount())
-                .description(expensesDto.getDescription())
-                .expensesDate(expensesDto.getExpensesDate())
-                .expensesName(expensesDto.getExpensesName())
+                .amount(expensesRequestDto.getAmount())
+                .description(expensesRequestDto.getDescription())
+                .expensesDate(expensesRequestDto.getExpensesDate())
+                .expensesName(expensesRequestDto.getExpensesName())
                 .build();
         return entity;
     }
 
-    public List<ExpensesEntity> fromDtoList(List<ExpensesDto> expensesDtoList){
+    public List<ExpensesEntity> fromDtoList(List<ExpensesRequestDto> expensesRequestDtoList){
         ExpensesMapper mapper = new ExpensesMapper();
-        return expensesDtoList.stream().map(n->mapper.fromDto(n)).collect(Collectors.toList());
+        return expensesRequestDtoList.stream().map(n->mapper.fromDto(n)).collect(Collectors.toList());
 
     }
-    public ExpensesDto toDto(ExpensesEntity expensesEntity){
-        ExpensesDto expensesDto = ExpensesDto.builder()
+    public ExpensesResponseDto toDto(ExpensesEntity expensesEntity){
+        ExpensesResponseDto expensesResponseDto = ExpensesResponseDto.builder()
                 .amount(expensesEntity.getAmount())
                 .description(expensesEntity.getDescription())
                 .expensesDate(expensesEntity.getExpensesDate())
                 .expensesName(expensesEntity.getExpensesName())
                 .id(expensesEntity.getId())
+                .reciepImage(expensesEntity.getReciepImage())
                 .build();
-        return expensesDto;
+        return expensesResponseDto;
     }
 
-    public List<ExpensesDto> toDtoList(List<ExpensesEntity> expensesEntityList){
+    public List<ExpensesResponseDto> toDtoList(List<ExpensesEntity> expensesEntityList){
         ExpensesMapper mapper = new ExpensesMapper();
         return expensesEntityList.stream().map(n->mapper.toDto(n)).collect(Collectors.toList());
 

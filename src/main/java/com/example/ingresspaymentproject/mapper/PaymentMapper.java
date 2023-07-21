@@ -1,49 +1,55 @@
 package com.example.ingresspaymentproject.mapper;
 
-import com.example.ingresspaymentproject.dto.ExpensesDto;
-import com.example.ingresspaymentproject.dto.PaymentDto;
-import com.example.ingresspaymentproject.entity.ExpensesEntity;
+import com.example.ingresspaymentproject.dto.PaymentRequestDto;
+import com.example.ingresspaymentproject.dto.PaymentResponseDto;
 import com.example.ingresspaymentproject.entity.PaymentEntity;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Mapper
 @Component
 public class PaymentMapper {
-    public PaymentEntity fromDto(PaymentDto paymentDto){
+    public PaymentEntity fromDto(PaymentRequestDto paymentRequestDto) throws IOException {
         PaymentEntity entity = PaymentEntity.builder()
-                .amount(paymentDto.getAmount())
-                .courseName(paymentDto.getCourseName())
-                .courseMonth(paymentDto.getCourseMonth())
-                .student(paymentDto.getStudent())
-                .receiptDate(paymentDto.getReceiptDate())
+                .amount(paymentRequestDto.getAmount())
+                .courseName(paymentRequestDto.getCourseName())
+                .courseMonth(paymentRequestDto.getCourseMonth())
+                .student(paymentRequestDto.getStudent())
+                .receiptDate(paymentRequestDto.getReceiptDate())
                 .reciepImage(null)
                 .build();
         return entity;
     }
 
-    public List<PaymentEntity> fromDtoList(List<PaymentDto> paymentDtoList){
+    public List<PaymentEntity> fromDtoList(List<PaymentRequestDto> paymentRequestDtoList){
         PaymentMapper mapper = new PaymentMapper();
-        return paymentDtoList.stream().map(n->mapper.fromDto(n)).collect(Collectors.toList());
+        return paymentRequestDtoList.stream().map(n-> {
+            try {
+                return mapper.fromDto(n);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }).collect(Collectors.toList());
 
     }
-    public PaymentDto toDto(PaymentEntity paymentEntity){
-        PaymentDto paymentDto = PaymentDto.builder()
+    public PaymentResponseDto toDto(PaymentEntity paymentEntity){
+        PaymentResponseDto paymentResponseDto = PaymentResponseDto.builder()
                 .amount(paymentEntity.getAmount())
                 .courseName(paymentEntity.getCourseName())
                 .courseMonth(paymentEntity.getCourseMonth())
                 .student(paymentEntity.getStudent())
                 .receiptDate(paymentEntity.getReceiptDate())
                 .id(paymentEntity.getId())
-               // .reciepImage(paymentEntity.getReciepImage())
+                .reciepImage(paymentEntity.getReciepImage())
                 .build();
-        return paymentDto;
+        return paymentResponseDto;
     }
 
-    public List<PaymentDto> toDtoList(List<PaymentEntity> paymentEntityList){
+    public List<PaymentResponseDto> toDtoList(List<PaymentEntity> paymentEntityList){
         PaymentMapper mapper = new PaymentMapper();
         return paymentEntityList.stream().map(n->mapper.toDto(n)).collect(Collectors.toList());
 

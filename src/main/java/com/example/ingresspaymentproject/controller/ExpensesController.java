@@ -1,30 +1,29 @@
 package com.example.ingresspaymentproject.controller;
 
-import com.example.ingresspaymentproject.dto.ExpensesDto;
+import com.example.ingresspaymentproject.dto.ExpensesRequestDto;
+import com.example.ingresspaymentproject.dto.ExpensesResponseDto;
 import com.example.ingresspaymentproject.service.impl.ExpensesServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
 public class ExpensesController {
     private  final ExpensesServiceImpl expensesService;
-    @PostMapping("expenses")
-    public void addExpenses(@RequestBody  ExpensesDto expensesDto){
-        expensesService.saveExpenses(expensesDto);
+    @PostMapping(value = "expenses" ,consumes = {"multipart/form-data"},produces = "application/json")
+    public void addExpenses(@ModelAttribute ExpensesRequestDto expensesRequestDto) throws IOException {
+        expensesService.saveExpenses(expensesRequestDto);
     }
 
     @PutMapping("expenses/{id}")
-    public void updateExpenses(@PathVariable Long id, @RequestBody  ExpensesDto expensesDto)  {
-        expensesService.updateExpenses(id,expensesDto);
+    public void updateExpenses(@PathVariable Long id, @RequestBody ExpensesRequestDto expensesRequestDto) throws IOException {
+        expensesService.updateExpenses(id, expensesRequestDto);
     }
     @GetMapping("expenses")
-    public List<ExpensesDto> getAllExpenses(){
+    public List<ExpensesResponseDto> getAllExpenses(){
        return expensesService.getAllExpenses();
     }
 }

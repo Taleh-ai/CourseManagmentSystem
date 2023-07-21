@@ -1,14 +1,13 @@
 package com.example.ingresspaymentproject.service;
 
-import com.example.ingresspaymentproject.dto.ExpensesDto;
-import org.springframework.web.multipart.MultipartFile;
+import com.example.ingresspaymentproject.dto.ExpensesRequestDto;
+import com.example.ingresspaymentproject.dto.ExpensesResponseDto;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 public interface ExpensesService {
-    public void saveExpenses(ExpensesDto expensesDto) ;
-    public void updateExpenses(Long id,ExpensesDto expensesDto) ;
-    public List<ExpensesDto> getAllExpenses();
+    public void saveExpenses(ExpensesRequestDto expensesRequestDto) throws IOException;
+    public void updateExpenses(Long id, ExpensesRequestDto expensesRequestDto) throws IOException;
+    public List<ExpensesResponseDto> getAllExpenses();
 }
