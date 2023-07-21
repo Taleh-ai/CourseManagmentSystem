@@ -27,4 +27,6 @@ public class PaymentEntity {
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   private LocalDate receiptDate;
   private String student;
+  @Lob
+  private byte[] reciepImage;
 }

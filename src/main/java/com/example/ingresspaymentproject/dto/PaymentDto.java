@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Blob;
 import java.time.LocalDate;
@@ -20,4 +21,5 @@ public class PaymentDto {
     private int amount;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate receiptDate;
+    private MultipartFile reciepImage;
 }

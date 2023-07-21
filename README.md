@@ -15,3 +15,6 @@ Clone the repository: Clone this repository to your local machine using the foll
 git clone https://github.com/Taleh-ai/IngressPaymentProject.git
 
 or you can just copy url and get from version control in Intellij
+
+uzrlu say abi windowsda any desk alinmadi
+ maca kecdim okay postmani ac

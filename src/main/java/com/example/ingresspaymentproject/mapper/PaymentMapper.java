@@ -20,6 +20,7 @@ public class PaymentMapper {
                 .courseMonth(paymentDto.getCourseMonth())
                 .student(paymentDto.getStudent())
                 .receiptDate(paymentDto.getReceiptDate())
+                .reciepImage(null)
                 .build();
         return entity;
     }
@@ -37,6 +38,7 @@ public class PaymentMapper {
                 .student(paymentEntity.getStudent())
                 .receiptDate(paymentEntity.getReceiptDate())
                 .id(paymentEntity.getId())
+               // .reciepImage(paymentEntity.getReciepImage())
                 .build();
         return paymentDto;
     }

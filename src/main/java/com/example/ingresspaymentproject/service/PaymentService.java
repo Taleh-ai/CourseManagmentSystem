@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface PaymentService {
 
-    public void savePayment(PaymentDto paymentDto);
+    public void savePayment(PaymentDto paymentDto) throws IOException;
     public void updatePayment(Long id,PaymentDto paymentDto);
     public List<PaymentDto> getAllPayments();
     public List<PaymentDto> getPayment(String number);

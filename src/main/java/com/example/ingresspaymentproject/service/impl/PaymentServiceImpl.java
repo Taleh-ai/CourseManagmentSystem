@@ -21,9 +21,9 @@ public class PaymentServiceImpl implements PaymentService {
     private final PaymentRepository repository;
     private final PaymentMapper mapper;
     @Override
-    public void savePayment(PaymentDto paymentDto)  {
+    public void savePayment(PaymentDto paymentDto) throws IOException {
         PaymentEntity paymentEntity  = mapper.fromDto(paymentDto);
-
+        paymentEntity.setReciepImage(paymentDto.getReciepImage().getBytes());
         repository.save(paymentEntity);
     }
 

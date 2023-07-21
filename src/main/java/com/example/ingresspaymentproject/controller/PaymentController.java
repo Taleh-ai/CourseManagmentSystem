@@ -17,7 +17,7 @@ public class PaymentController {
 
 private final PaymentServiceImpl paymentService;
     @PostMapping("payment")
-    public void addPayment(@RequestBody PaymentDto paymentDto)  {
+    public void addPayment(@RequestBody PaymentDto paymentDto) throws IOException {
         paymentService.savePayment(paymentDto);
     }
 
