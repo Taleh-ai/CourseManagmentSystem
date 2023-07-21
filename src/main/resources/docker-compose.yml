@@ -1,0 +1,15 @@
+version: '3'
+services:
+  postgres-db:
+    image: postgres:latest
+    container_name: local-postgres-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+volumes:
+  postgres_data:

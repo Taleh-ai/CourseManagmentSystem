@@ -1,4 +1,14 @@
 package com.example.ingresspaymentproject.entity;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.sql.Blob;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @AllArgsConstructor
@@ -12,11 +22,9 @@ public class PaymentEntity {
   Long id;
 
   private String courseName;
-  private int courseMonth
-  private String studentName;
+  private int courseMonth;
   private int amount;
   @DateTimeFormat(pattern = "yyyy-MM-dd")
-  private Date receiptDate;
-  @Lob
-  private byte[] receiptImage;
+  private LocalDate receiptDate;
+  private String student;
 }

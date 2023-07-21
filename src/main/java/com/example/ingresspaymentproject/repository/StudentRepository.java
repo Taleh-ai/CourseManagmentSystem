@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface StudentRepository extends JpaRepository<StudentEntity,Long> {
 
-    StudentEntity getStudentEntityByPhone(String phone);
+    StudentEntity findByPhone(String phone);
 
-
+    StudentEntity getById(Long id);
     void deleteByPhone(String phone);
 }

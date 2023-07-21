@@ -7,7 +7,7 @@ import java.util.List;
 public interface StudentService {
 
     public void saveStudent(StudentDto studentDto);
-    public void updateStudent(StudentDto studentDto);
+    public void updateStudent(Long id,StudentDto studentDto);
 
     public  void deleteStudent(String number);
 

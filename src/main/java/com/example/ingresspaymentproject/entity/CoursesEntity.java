@@ -18,6 +18,5 @@ public class CoursesEntity {
   Long id;
   @Column(name = "course_name")
   private String courseName;
-  @Column(name = "is_active")
-  private boolean isActive;
+
 }

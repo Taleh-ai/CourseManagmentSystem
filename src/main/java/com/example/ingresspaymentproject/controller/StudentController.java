@@ -13,23 +13,23 @@ import java.util.List;
 @RequiredArgsConstructor
 public class StudentController {
 private  final StudentServiceImpl studentService;
-    @GetMapping("/student/{number}")
-    public StudentDto getStudent(@PathVariable @Pattern(regexp="^\\+994\\d{9}$") String number){
+    @GetMapping("/students/{number}")
+    public StudentDto getStudent(@PathVariable String number){
     return studentService.getStudent(number);
     }
 
-    @GetMapping("/student")
+    @GetMapping("/students")
     public List<StudentDto> getStudents(){
         return studentService.getAllStudent();
     }
 
-    @PostMapping("/student")
+    @PostMapping("/students")
     public void saveStudent(@RequestBody StudentDto studentDto){
         studentService.saveStudent(studentDto);
     }
 
-    @PutMapping("/student")
-    public void updateStudent(@RequestBody StudentDto studentDto){
-        studentService.updateStudent(studentDto);
+    @PutMapping("/students/{id}")
+    public void updateStudent(@PathVariable("id") Long id,@RequestBody StudentDto studentDto){
+        studentService.updateStudent(id,studentDto);
     }
 }

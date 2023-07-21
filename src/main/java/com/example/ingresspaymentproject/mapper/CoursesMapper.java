@@ -15,7 +15,6 @@ public class CoursesMapper {
   public CoursesEntity fromDto(CoursesDto coursesDto){
     CoursesEntity entity = CoursesEntity.builder()
             .courseName(coursesDto.getCourseName())
-            .isActive(coursesDto.isActive())
             .build();
     return entity;
 }
@@ -28,7 +27,6 @@ public class CoursesMapper {
     public CoursesDto toDto(CoursesEntity courseEntity){
         CoursesDto course = CoursesDto.builder()
                 .courseName(courseEntity.getCourseName())
-                .isActive(courseEntity.isActive())
                 .id(courseEntity.getId())
                 .build();
         return course;

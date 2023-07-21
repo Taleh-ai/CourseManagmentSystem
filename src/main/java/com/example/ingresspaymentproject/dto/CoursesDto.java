@@ -12,6 +12,5 @@ public class CoursesDto {
   Long id;
   
   private String courseName;
-  
-  private boolean isActive;
+
 }

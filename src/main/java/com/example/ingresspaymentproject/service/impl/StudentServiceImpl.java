@@ -23,8 +23,12 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void updateStudent(StudentDto studentDto) {
-        StudentEntity entity = studentMapper.fromDto(studentDto);
+    public void updateStudent(Long id,StudentDto studentDto) {
+        StudentEntity entity = studentRepository.getById(id);
+        entity.setEmail(studentDto.getEmail());
+        entity.setPhone(studentDto.getPhone());
+        entity.setFirstName(studentDto.getFirstName());
+        entity.setLastName(studentDto.getLastName());
         studentRepository.save(entity);
     }
 
@@ -35,7 +39,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentDto getStudent(String number) {
-       StudentEntity entity =  studentRepository.getStudentEntityByPhone(number);
+       StudentEntity entity =  studentRepository.findByPhone(number);
        return  studentMapper.toDto(entity);
     }
 

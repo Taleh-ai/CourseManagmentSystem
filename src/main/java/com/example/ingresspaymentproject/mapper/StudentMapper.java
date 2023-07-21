@@ -28,6 +28,7 @@ public StudentEntity fromDto(StudentDto studentDto){
 
     }
     public StudentDto toDto(StudentEntity studentEntity){
+
         StudentDto student = StudentDto.builder()
                 .email(studentEntity.getEmail())
                 .firstName(studentEntity.getFirstName())

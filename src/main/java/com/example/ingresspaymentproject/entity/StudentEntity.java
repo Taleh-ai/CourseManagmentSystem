@@ -26,4 +26,6 @@ public class StudentEntity {
     private String phone;
     @Column(name = "email")
     private String email;
+
+
 }

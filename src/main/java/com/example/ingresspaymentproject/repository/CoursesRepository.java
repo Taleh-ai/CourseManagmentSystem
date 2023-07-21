@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface  CoursesRepository extends JpaRepository<CoursesEntity,Long> {
     void deleteByCourseName(String name);
     CoursesEntity findByCourseName(String name);
+    CoursesEntity findCoursesEntitiesByCourseNameContainsIgnoreCase(String name);
+    CoursesEntity getById(Long id);
 }
