@@ -4,10 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Blob;
+import java.sql.Types;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -30,5 +33,6 @@ public class PaymentEntity {
   private String student;
 
   @Lob
+  @JdbcTypeCode(Types.LONGVARBINARY)
   private byte[] reciepImage;
 }

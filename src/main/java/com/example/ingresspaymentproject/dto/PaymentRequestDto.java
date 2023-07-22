@@ -14,7 +14,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Builder
 public class PaymentRequestDto {
-    private Long id;
     private String courseName;
     private int courseMonth;
     private String student;

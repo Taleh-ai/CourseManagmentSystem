@@ -37,6 +37,7 @@ public class PaymentServiceImpl implements PaymentService {
         paymentEntity.setAmount(paymentRequestDto.getAmount());
         paymentEntity.setCourseMonth(paymentRequestDto.getCourseMonth());
         paymentEntity.setReceiptDate(paymentRequestDto.getReceiptDate());
+        paymentEntity.setReciepImage(ImageUtil.compressImage(paymentRequestDto.getReciepImage().getBytes()));
         repository.save(paymentEntity);
     }
 

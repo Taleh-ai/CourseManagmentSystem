@@ -5,9 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Blob;
+import java.sql.Types;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -33,5 +35,6 @@ public class ExpensesEntity {
   @Column(name = "expenses_date")
   private LocalDate expensesDate;
   @Lob
+  @JdbcTypeCode(Types.LONGVARBINARY)
   private byte[] reciepImage;
 }

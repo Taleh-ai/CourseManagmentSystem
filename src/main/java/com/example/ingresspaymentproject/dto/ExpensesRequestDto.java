@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Builder
 public class ExpensesRequestDto {
-    private Long id;
+
     private String expensesName;
     private String description;
     private int amount;

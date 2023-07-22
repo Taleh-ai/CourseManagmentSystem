@@ -6,6 +6,7 @@ import com.example.ingresspaymentproject.entity.ExpensesEntity;
 import com.example.ingresspaymentproject.mapper.ExpensesMapper;
 import com.example.ingresspaymentproject.repository.ExpensesRepository;
 import com.example.ingresspaymentproject.service.ExpensesService;
+import com.example.ingresspaymentproject.util.ImageUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public class ExpensesServiceImpl implements ExpensesService {
     public void saveExpenses(ExpensesRequestDto expensesRequestDto) throws IOException {
 
         ExpensesEntity expensesEntity  = mapper.fromDto(expensesRequestDto);
-        expensesEntity.setReciepImage(expensesRequestDto.getReciepImage().getBytes());
+        expensesEntity.setReciepImage( ImageUtil.compressImage(expensesRequestDto.getReciepImage().getBytes()));
         repository.save(expensesEntity);
     }
 
@@ -34,6 +35,7 @@ public class ExpensesServiceImpl implements ExpensesService {
         expensesEntity.setAmount(expensesRequestDto.getAmount());
         expensesEntity.setExpensesDate(expensesRequestDto.getExpensesDate());
         expensesEntity.setReciepImage(expensesRequestDto.getReciepImage().getBytes());
+        expensesEntity.setReciepImage(ImageUtil.compressImage(expensesRequestDto.getReciepImage().getBytes()));
         repository.save(expensesEntity);
     }
 

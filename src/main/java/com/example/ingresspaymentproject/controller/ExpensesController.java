@@ -18,8 +18,8 @@ public class ExpensesController {
         expensesService.saveExpenses(expensesRequestDto);
     }
 
-    @PutMapping("expenses/{id}")
-    public void updateExpenses(@PathVariable Long id, @RequestBody ExpensesRequestDto expensesRequestDto) throws IOException {
+    @PutMapping(value = "expenses/{id}",consumes = {"multipart/form-data"},produces = "application/json")
+    public void updateExpenses(@PathVariable Long id, @ModelAttribute ExpensesRequestDto expensesRequestDto) throws IOException {
         expensesService.updateExpenses(id, expensesRequestDto);
     }
     @GetMapping("expenses")
