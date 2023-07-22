@@ -2,6 +2,7 @@ package com.example.ingresspaymentproject.service.impl;
 
 import com.example.ingresspaymentproject.dto.StudentDto;
 import com.example.ingresspaymentproject.entity.StudentEntity;
+import com.example.ingresspaymentproject.exception.MethodArgumentNotValidException;
 import com.example.ingresspaymentproject.mapper.StudentMapper;
 import com.example.ingresspaymentproject.repository.StudentRepository;
 import com.example.ingresspaymentproject.service.StudentService;
@@ -17,9 +18,14 @@ public class StudentServiceImpl implements StudentService {
     private final StudentMapper studentMapper;
     private final StudentRepository studentRepository;
     @Override
-    public void saveStudent(StudentDto studentDto) {
-        StudentEntity entity = studentMapper.fromDto(studentDto);
-        studentRepository.save(entity);
+    public void saveStudent(StudentDto studentDto) throws MethodArgumentNotValidException {
+        if(!studentRepository.existsByPhone(studentDto.getPhone())){
+            StudentEntity entity = studentMapper.fromDto(studentDto);
+            studentRepository.save(entity);
+        }else {
+            throw new MethodArgumentNotValidException("Phone already in use!");
+        }
+
     }
 
     @Override

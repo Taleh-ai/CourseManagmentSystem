@@ -2,6 +2,7 @@ package com.example.ingresspaymentproject.controller;
 
 
 import com.example.ingresspaymentproject.dto.StudentDto;
+import com.example.ingresspaymentproject.exception.MethodArgumentNotValidException;
 import com.example.ingresspaymentproject.service.impl.StudentServiceImpl;
 import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ private  final StudentServiceImpl studentService;
     }
 
     @PostMapping("/students")
-    public void saveStudent(@RequestBody StudentDto studentDto){
+    public void saveStudent(@RequestBody StudentDto studentDto) throws MethodArgumentNotValidException {
         studentService.saveStudent(studentDto);
     }
 

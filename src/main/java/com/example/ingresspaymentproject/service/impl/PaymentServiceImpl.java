@@ -49,6 +49,7 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public List<PaymentResponseDto> getPayment(String number) {
         StudentEntity entity = studentRepository.findByPhone(number);
+        System.out.println(entity.toString());
         return mapper.toDtoList(repository.findAllByStudent(entity.getFirstName()+" "+entity.getLastName()));
     }
 

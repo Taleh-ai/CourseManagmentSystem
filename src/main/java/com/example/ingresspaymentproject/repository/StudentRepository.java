@@ -11,4 +11,6 @@ public interface StudentRepository extends JpaRepository<StudentEntity,Long> {
 
     StudentEntity getById(Long id);
     void deleteByPhone(String phone);
+
+    boolean existsByPhone(String phone);
 }
